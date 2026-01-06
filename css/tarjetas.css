@@ -1,0 +1,145 @@
+:root{
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+/* Contenedor de tendencias */
+.tendencias{
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+
+/* Card */
+.tendencias .card{
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    cursor: pointer;
+}
+
+/* Imagen principal */
+.tendencias .cover-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Wrapper */
+.tendencias .wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+    z-index: 1;
+}
+
+/* Hover 3D */
+.tendencias .card:hover .wrapper{
+    transform: perspective(900px) translateY(-5%) rotateX(25deg);
+    box-shadow: 2px 35px 32px -8px rgba(0,0,0,0.75);
+}
+
+/* Gradientes */
+.tendencias .wrapper::before,
+.tendencias .wrapper::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.tendencias .wrapper::before{
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        to top,
+        transparent 46%,
+        rgba(12,13,19,0.5) 68%,
+        rgba(12,13,19,1) 97%
+    );
+}
+
+.tendencias .wrapper::after{
+    bottom: 0;
+    height: 80px;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 46%,
+        rgba(12,13,19,0.5) 68%,
+        rgba(12,13,19,1) 97%
+    );
+}
+
+/* Activar gradientes */
+.tendencias .card:hover .wrapper::before,
+.tendencias .card:hover .wrapper::after{
+    opacity: 1;
+}
+
+.tendencias .card:hover .wrapper::after{
+    height: 120px;
+}
+
+/* Título */
+.tendencias .title{
+    width: 100%;
+    z-index: 2;
+    transition: transform 0.5s;
+}
+
+.tendencias .card:hover .title{
+    transform: translateY(-50px);
+}
+
+/* Imagen secundaria */
+.tendencias .character{
+    width: 100%;
+    position: absolute;
+    left: -50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 3;
+    transition: all 0.5s;
+}
+
+.tendencias .card:hover .character{
+    opacity: 1;
+    transform: translateY(-30%);
+}
+
+
+@media (max-width: 900px){
+    .tendencias{
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+.tendencias .title-text{
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.tendencias .card:hover .title-text{
+    transform: translateY(-50px);
+    opacity: 1;
+}
+
